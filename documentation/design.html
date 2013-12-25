@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META DATA -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Treble theme">
+    <title>Treble Documentation</title>
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="assets/images/ico/favicon.png">
+
+
+    <!-- TREBLE STYLESHEETS -->
+    <link rel="stylesheet" href="assets/style/bootstrap.css" type="text/css" media="all" />
+    
+    <!-- TREBLE DOCUMENTATION -->
+    <link href="assets/style/docs.css" rel="stylesheet">
+    <link href="assets/style/prettify.css" rel="stylesheet">
+    
+    <!-- GOOGLE WEB FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed-top fixed-visable" id="navigation">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span12 center">
+                    <!-- LOGO -->
+                    <a class="brand pull-left" href="./">
+                        <img src="assets/images/logo.png" alt="Treble">
+                    </a>
+                    <!-- END LOGO -->
+
+                    <!-- MOBILE MENU BUTTON -->
+                    <div class="mobile-menu" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </div>
+                    <!-- END MOBILE MENU BUTTON -->
+                    
+                    <!-- MAIN MENU -->
+                    <ul id="main-menu" class="nav-collapse collapse">
+                        <li><a href="design.html">Design</a></li>
+                        <li><a href="scaffolding.html">Scaffolding</a></li>
+                        <li><a href="base_css.html">Base CSS</a></li>
+                        <li><a href="components.html">Components</a></li>
+                        <li><a href="plugins.html">Plugins</a></li>
+                        <li><a href="licences.html">Licences</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                    <!-- END MAIN MENU -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVIGATION -->
+    
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <h1>Treble design</h1>
+      </div>
+    </header>
+
+
+  <div class="container">
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+          <li><a href="#PSDFiles"><i class="icon-chevron-right"></i> PSD files</a></li>
+          <li><a href="#mainSourceFile"><i class="icon-chevron-right"></i> Main source file</a></li>
+          <li><a href="#welcomePage"><i class="icon-chevron-right"></i> Welcome page</a></li>
+          <li><a href="#parallax"><i class="icon-chevron-right"></i> Parallax</a></li>
+          <li><a href="#contactPage"><i class="icon-chevron-right"></i> Contact page</a></li>
+          <li><a href="#portfolioThumbs"><i class="icon-chevron-right"></i> Portfolio thumbs</a></li>
+          <li><a href="#iconSet"><i class="icon-chevron-right"></i> Icon set</a></li>
+          <li><a href="#fonts"><i class="icon-chevron-right"></i> Fonts</a></li>
+        </ul>
+      </div>
+      <div class="span9">
+
+        <!-- Introduction
+        ================================================== -->
+        <section id="code">
+          <div class="page-header">
+            <h1>Introduction</h1>
+          </div>
+		
+            <h2 id="PSDFiles">PSD files</h2>
+            <p>Treble has everything ready for you.</p>
+            <p>Files can be found in special directory named <strong>design</strong> in root of bought theme. Here are the files:</p>
+            <ul>
+                <li><strong>Source.psd</strong></li>
+                <li><strong>Icon_Set_White.psd</strong></li>
+                <li><strong>Icon_Set_Dark.psd</strong></li>
+                <li><strong>Welcome_Image_Template.psd</strong></li>
+                <li><strong>Parallax01_Image_Template.psd</strong></li>
+                <li><strong>Parallax02_Image_Template.psd</strong></li>
+                <li><strong>Contact_Image_Template.psd</strong></li>
+                <li><strong>Portfolio_Thumb_Template.psd</strong></li>
+                <li><strong>Portfolio_Image_Template.psd</strong></li>
+            </ul>
+            
+            <h2 id="mainSourceFile">Main source file</h2>
+            <p>We included layered psd for whole template <strong>Source.psd</strong> you can experiment with layout and colors before you start modifying css files. </p>
+            <p><span class="label label-info">Heads up!</span> Layout and other color changes should be implemented using css files that have been included in the template files.</p>
+            </br>
+            
+            <h2 id="welcomePage">Welcome page</h2>
+            <p>If you'd like to change the main image in the Welcome page, open <strong>Welcome_Image_Template.psd</strong>, make the necessary adjustments, and then save the file as <code>welcome.jpg</code>.</p>
+            <p><span class="label label-info">Heads up!</span> Make sure that you followed safe area guidelines included in the psd file.</p>
+            <br/>
+            
+            <h2 id="parallax">Parallax</h2>
+            <p>Same as Welcome image apply to <strong>Parallax01_Image_Template.psd</strong> and  <strong>Parallax02_Image_Template.psd</strong>, save it under appropriate names.</p>
+            <p>For example, to change the twitter feed background save the file as <code>tw_bck.jpg</code>. To change the features page background save the file as <code>q_bck.jpg</code>.</p>
+            <br/>
+            
+            <h2 id="contactPage">Contact page</h2>
+            <p>To change the contact page background open the <strong>Contact_Image_Template.psd</strong> and save the file as <code>map_bck.jpg</code>.</p>
+            <br/>
+            
+            <h2 id="portfolioThumbs">Portfolio thumbs</h2>
+            <p>To change thumbs images open <strong>Portfolio_Thumb_Template.psd</strong>. Fit your desired image into the format and save the file as <code>01_th.jpg</code>. </p>
+            <p>Same for the rest of the portfolio thumbnails e.g. <code>02_th.jpg</code> for <strong>second thumb</strong>, <code>03_th.jpg</code> for third etc...</p>
+            <p>You can use same template to change blog thumbnails as well. Just change the name when saving images <code>01_th_blog.jpg</code>, <code>02_th_blog.jpg</code>.</p>
+            <br/>
+            
+            <h2 id="iconSet">Icon set</h2>
+            <p>To change or modify the icons open <strong>Icon_Set_White.psd</strong> or <strong>Icon_Set_Dark.psd</strong> depending on the background you use. For instant change we suggest to keep the icon set image size the same as it is now. </p>
+           
+        </section>
+
+        <!-- Fonts
+        ================================================== -->
+        <section id="fonts">
+          <div class="page-header">
+            <h1>Fonts</h1>
+          </div>
+            <h2>Google fonts</h2>
+            <p>We used <strong>Open Sans</strong>. It's free and good looking.</p>
+            <ul>
+                <li>300italic</li>
+                <li>400italic</li>
+                <li>600italic</li>
+                <li>700italic</li>
+                <li>800italic</li>
+                <li>300</li>
+                <li>400</li>
+                <li>600</li>
+                <li>700</li>
+                <li>800</li>
+            </ul>
+            
+            <h2>Chunk Five</h2>
+            <p>We used <strong>Chunk Five</strong>. It's free and good looking.</p>
+            <p>This Font Software is licensed under the SIL Open Font License, Version 1.1. <a href="http://scripts.sil.org/OFL">http://scripts.sil.org/OFL</a></p>
+            <p>More about this font <a href="http://www.fontsquirrel.com/fonts/ChunkFive">here</a>.</p>
+        </section>
+      </div>
+    </div>
+
+  </div>
+
+<footer class="footer">
+      <div class="container">
+        <p>Treble <small>HTML</small> is part of <a href="http://www.gridelicious.net">Gridelicious theme's</a>.</p>
+        <p>Created in collaboration between <a href="http://www.mindburger.net">Mindburger</a> and <a href="http://www.rewea.com">Rewea</a></p>
+        
+      </div>
+</footer>
+    
+    <!-- LOAD JS FILES -->
+    
+    <!-- Jquery -->
+    <script src="assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    <!-- Less and Twitter Bootstrap -->
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+            
+    
+    
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+    
+    
+    <script src="assets/js/prettify.js" type="text/javascript"></script>
+    <script src="assets/js/application.js" type="text/javascript"></script>
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-44061294-1', 'gridelicious.net');
+        ga('send', 'pageview');
+    </script>
+    
+</body>
+</html>
