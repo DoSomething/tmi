@@ -11,7 +11,7 @@
 	$.fn.tweet = function(o){
 		var s = $.extend({
 			modpath: "/twitter/",                     // [string]   relative URL to Tweet.js mod (see https://github.com/StanScates/Tweet.js-Mod)
-			username: null,                           // [string or array] required unless using the 'query' option; one or more twitter screen names (use 'list' option for multiple names, where possible)
+			username: "TMI_Agency",                           // [string or array] required unless using the 'query' option; one or more twitter screen names (use 'list' option for multiple names, where possible)
 			list_id: null,                            // [integer]  ID of list to fetch when using list functionality
 			list: null,                               // [string]   optional slug of list belonging to username
 			favorites: false,                         // [boolean]  display the user's favorites instead of his tweets
