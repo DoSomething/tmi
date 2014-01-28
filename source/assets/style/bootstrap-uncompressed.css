@@ -16,7 +16,7 @@
   position: relative;
   overflow: hidden;
   text-align: center;
-  background: #292929 url(../images/pages/welcome/walking-darker.png) 50% 0 repeat fixed;
+  background: #292929 url(../images/pages/welcome/walking.png) 50% 0 repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -651,6 +651,13 @@
   padding: 7px 100px 8px 0px;
   text-align: left;
 }
+
+.logo img {
+max-width: 200%;
+width: 225px;
+height: 185fpx;
+}
+
 #navigation #main-menu {
   display: inline-block;
   float: none;
@@ -1876,7 +1883,7 @@ h4 {
   font-size: 19px;
   text-transform: uppercase;
   font-weight: 800;
-  color: #aaaaaa;
+  color: #11111;
   letter-spacing: 1px;
 }
 h5 {
@@ -6832,7 +6839,8 @@ a.badge:focus {
     *margin-left: 10.87304565353346%;
   }
   .row-fluid .offset1:first-child {
-    margin-left: 8.536585365853659%;
+    margin-left: 32%;
+    /*margin-left: 8.536585365853659%;*/
     *margin-left: 8.434021263289557%;
   }
   input,

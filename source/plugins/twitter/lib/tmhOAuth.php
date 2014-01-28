@@ -33,17 +33,17 @@ class tmhOAuth {
       array(
         // leave 'user_agent' blank for default, otherwise set this to
         // something that clearly identifies your app
-        'user_agent'                 => '',
+        'user_agent'                 => 'TMI Site feed',
         // default timezone for requests
         'timezone'                   => 'UTC',
 
         'use_ssl'                    => true,
         'host'                       => 'api.twitter.com',
 
-        'consumer_key'               => '',
-        'consumer_secret'            => '',
-        'user_token'                 => '',
-        'user_secret'                => '',
+        'consumer_key'               => 'COFepk7RV9IXI5nzwEyg',
+        'consumer_secret'            => 'CzvA2yNoOF19O2GP40V8wMtnoDyfxnCL4xTBxEeD1o',
+        'user_token'                 => '1413774739-x3ylpCqNfDPoxtY3yKINkm2Gcbi8g81sbzP36ba',
+        'user_secret'                => '4A6kxIcUrNOnwLy5pdmQGi6PSdFzihZvZ4CYcrNukMTtk',
         'force_nonce'                => false,
         'nonce'                      => false, // used for checking signatures. leave as false for auto
         'force_timestamp'            => false,
