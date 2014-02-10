@@ -6911,6 +6911,13 @@ a.badge:focus {
   .uneditable-input.span1 {
     width: 61px;
   }
+
+  #page-blog img {
+    width: 70%;
+    padding-left: 35px;
+  }
+
+  }
   .thumbnails {
     margin-left: -30px;
   }
