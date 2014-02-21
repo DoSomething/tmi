@@ -39,10 +39,10 @@ class ezTweet {
     private $lib = './lib/';
 
     // Enable caching
-    private $cache_enabled = true;
+    private $cache_enabled = false;
 
     // Cache interval (minutes)
-    private $cache_interval = 15;
+    private $cache_interval = 1;
 
     // Path to writable cache directory
     private $cache_dir = './';
