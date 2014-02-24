@@ -362,7 +362,7 @@
 }
 .page-twitter .twitterfeed .tweet_time a {
   font-size: 11px;
-  color: #ffffff;
+  color: #B8EEFD;
   display: block;
 }
 .page-twitter .twitterfeed .tweet_text a:hover {
@@ -423,7 +423,7 @@
 }
 .page-blog .read-more a:hover,
 .page-blog .read-more a.active {
-  background-color: #4e808e;
+  background-color: #B8EEFD;
   text-decoration: none;
   color: #ffffff;
 }
@@ -1422,7 +1422,7 @@ body {
   background-color: #ffffff;
 }
 a {
-  color: #4e808e;
+  color: #B8EEFD;
   text-decoration: none;
 }
 a:hover {
@@ -6510,6 +6510,10 @@ a.badge:focus {
   font-size: 0.8em;
   line-height: 22.5px;
 }
+
+#page-about .smallFontBy08 {
+  min-height: 155px;
+}
 .cutBy10 {
   margin: 0px 10%;
 }
@@ -6913,8 +6917,8 @@ a.badge:focus {
   }
 
   #page-blog img {
-    width: 70%;
-    padding-left: 35px;
+    width: 40%;
+    padding-left: 80px;
   }
 
   }
@@ -7530,7 +7534,7 @@ a.badge:focus {
   .smallFontBy08 {
     font-size: 1em;
   }
-}
+
 @media (max-width: 480px) {
   .page-header h1 small {
     display: block;
