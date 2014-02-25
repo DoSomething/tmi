@@ -171,6 +171,11 @@
   margin-bottom: 50px;
   display: none;
 }
+
+.portfolio-item-details a {
+  color: #7AACB4;
+}
+
 .portfolio-item-details .close-portfolio {
   text-align: right;
 }
@@ -366,7 +371,7 @@
   display: block;
 }
 .page-twitter .twitterfeed .tweet_text a:hover {
-  color: #4e808e;
+  color: white;
   text-decoration: underline;
 }
 .page-twitter .twitterfeed .tweet_list {
@@ -1426,7 +1431,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #33535d;
+  color: white;
   text-decoration: underline;
 }
 .img-rounded {
@@ -6514,6 +6519,11 @@ a.badge:focus {
 #page-about .smallFontBy08 {
   min-height: 155px;
 }
+
+#page-about a {
+  color: #7AACB4;
+}
+
 .cutBy10 {
   margin: 0px 10%;
 }
@@ -7459,6 +7469,10 @@ a.badge:focus {
     -moz-transition: none;
     -o-transition: none;
     transition: none;
+  }
+
+  #page-work a {
+    color: #7AACB4;
   }
   #page-about .about-items .item {
     display: block;

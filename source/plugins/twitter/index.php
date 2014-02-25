@@ -39,7 +39,7 @@ class ezTweet {
     private $lib = './lib/';
 
     // Enable caching
-    private $cache_enabled = false;
+    private $cache_enabled = true;
 
     // Cache interval (minutes)
     private $cache_interval = 1;

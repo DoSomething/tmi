@@ -173,7 +173,7 @@ $(document).ready(function(){
     */
     $('#twitterfeed-slider').tweet({
         modpath: 'plugins/twitter/',
-        username: 'TheGridelicious',
+        username: 'TMI_Agency',
         count: 3
     });
     
