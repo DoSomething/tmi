@@ -248,7 +248,7 @@
 *   PAGE | FEATURES
 */.page-features {
   position: relative;
-  background: url(../images/pages/features/office_blur.png) 50% 0 no-repeat fixed;
+  background: url(../images/pages/features/office_blur.jpg) 50% 0 no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -635,6 +635,7 @@
 */.page-clients .row-fluid {
   padding-bottom: 40px;
   padding-top: 15px;
+  margin-left: 105px;
 }
 /*
 *   HEADER
@@ -6559,6 +6560,10 @@ a.badge:focus {
   .hidden-tablet {
     display: none !important;
   }
+  
+  #page-blog img {
+    width: 40%;
+  }
 }
 @media (max-width: 767px) {
   .hidden-desktop {
@@ -6572,6 +6577,10 @@ a.badge:focus {
   }
   .hidden-phone {
     display: none !important;
+  }
+
+  #page-blog img {
+    width: 40%;
   }
 }
 .visible-print {
@@ -7043,6 +7052,7 @@ a.badge:focus {
     width: 100%;
     *zoom: 1;
   }
+
   .row-fluid:before,
   .row-fluid:after {
     display: table;
@@ -7325,6 +7335,11 @@ a.badge:focus {
   .line-divider:after {
     width: 80%;
   }
+
+  #page-blog img {
+    width: 40%;
+  }
+
 }
 @media (max-width: 767px) {
   html,
@@ -7549,6 +7564,14 @@ a.badge:focus {
     font-size: 1em;
   }
 
+  .page-clients .row-fluid {
+  width: 100%%;
+  }
+
+  #page-blog img {
+    width: 40%;
+  }
+
 @media (max-width: 480px) {
   .page-header h1 small {
     display: block;
@@ -7610,6 +7633,11 @@ a.badge:focus {
     margin-bottom: 20px;
     float: none;
   }
+
+  .page-clients .row-fluid {
+  width: 100%%;
+  }
+
   .about-items > li a,
   .portfolio-items > li a {
     display: inline-block;
@@ -7766,6 +7794,10 @@ a.badge:focus {
     padding-left: 10px;
     padding-right: 10px;
   }
+
+  #page-blog img {
+    width: 40%;
+  }
 }
 @media (min-width: 768px) {
   .nav-collapse.collapse {
@@ -7773,3 +7805,4 @@ a.badge:focus {
     overflow: visible !important;
   }
 }
+
