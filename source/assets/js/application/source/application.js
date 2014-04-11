@@ -165,23 +165,23 @@ $(document).ready(function(){
         onMixEnd: null
     });
     
-    /**
-    *   PAGE | Twitter 
-    *
-    *   Pull latest tweets from user.
-    *   Configuration: /plugins/twitter/index.php
-    */
-    $('#twitterfeed-slider').tweet({
-        modpath: 'plugins/twitter/',
-        username: 'TMI_Agency',
-        count: 3
-    });
+//     /**
+//     *   PAGE | Twitter 
+//     *
+//     *   Pull latest tweets from user.
+//     *   Configuration: /plugins/twitter/index.php
+//     */
+//     $('#twitterfeed-slider').tweet({
+//         modpath: 'plugins/twitter/',
+//         username: 'TMI_Agency',
+//         count: 3
+//     });
     
-    $('#twitterfeed-slider').tweetCarousel({
-        interval: 7000,
-        pause: "hover"
-    });
-});
+//     $('#twitterfeed-slider').tweetCarousel({
+//         interval: 7000,
+//         pause: "hover"
+//     });
+ });
 
 
 /**
