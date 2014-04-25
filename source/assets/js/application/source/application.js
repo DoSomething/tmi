@@ -5,7 +5,7 @@ $(document).ready(function(){
     var pageHeight = $(window).height();
     var pageWidth = $(window).width();
     var navigationHeight = $("#navigation").outerHeight();
-    
+
     /**
     *   ON RESIZE, check again
     */
@@ -13,30 +13,30 @@ $(document).ready(function(){
         pageWidth = $(window).width();
         pageHeight = $(window).height();
     });
-    
-    
+
+
     /**
     *   ON LOAD
     */
 
     /* Initialize scroll so if user droped to other part of page then home page. */
     $(window).trigger('scroll');
-    
+
     /* Fix navigation. */
     $('#navigation').fixedonlater({
         speedDown: 250,
         speedUp: 100
     });
-    
+
     /* Centralize elements on page. */
     $('.centralized').centralized({
         delay: 1500,
         fadeSpeed: 500
     });
-    
+
     /* Make embeded videos responsive. */
     $.fn.responsivevideos();
-    
+
     /* Carousel "Quote slider" initialization. */
     $('#quote-slider').each(function(){
         if($('.item', this).length) {
@@ -45,7 +45,7 @@ $(document).ready(function(){
             });
         }
     });
-    
+
     /* Scroll spy and scroll filter */
     $('#main-menu').onePageNav({
         currentClass: "active",
@@ -56,8 +56,8 @@ $(document).ready(function(){
         filter: "",
         easing: "swing"
      });
-    
-    /* 
+
+    /*
     *  Paralax initialization.
     *  Exclude for mobile.
     */
@@ -67,21 +67,21 @@ $(document).ready(function(){
         $('#page-features').parallax("0%", 0.07);
         $('#page-twitter').parallax("0%", 0.1);
     }
-    
+
     /* Emulate touch on table/mobile touchstart. */
     if(typeof(window.ontouchstart) != 'undefined') {
         var touchElements = [".social-icons a", ".portfolio-items li", ".about-items .item"];
-        
+
         $.each(touchElements, function (i, val) {
             $(val).each(function(i, obj) {
                 $(obj).bind('click', function(e){
-                
+
                     if($(this).hasClass('clickInNext')){
                         $(this).removeClass('clickInNext');
                     } else {
                         e.preventDefault();
                         e.stopPropagation();
-                        
+
                         $(this).mouseover();
                         $(this).addClass('clickInNext');
                     }
@@ -101,17 +101,17 @@ $(document).ready(function(){
         $('html, body').animate({
             scrollTop: $( $.attr(this, 'href') ).offset().top - navigationHeight + 4
         }, 800);
-        
+
         /* Fix jumping of navigation. */
         setTimeout(function() {
             $(window).trigger('scroll');
         }, 900);
-        
+
         return false;
     });
-    
+
     /**
-    *   PAGE | Welcome 
+    *   PAGE | Welcome
     *
     *   Initialize slider for welcome page H1 message.
     */
@@ -126,7 +126,7 @@ $(document).ready(function(){
         useCSS: false,
         pause: 10000
     });
-    
+
     /**
     *   PAGE | WORK
     *
@@ -164,23 +164,86 @@ $(document).ready(function(){
         onMixStart: null,
         onMixEnd: null
     });
-    
-//     /**
-//     *   PAGE | Twitter 
-//     *
-//     *   Pull latest tweets from user.
-//     *   Configuration: /plugins/twitter/index.php
-//     */
-//     $('#twitterfeed-slider').tweet({
-//         modpath: 'plugins/twitter/',
-//         username: 'TMI_Agency',
-//         count: 3
-//     });
-    
-//     $('#twitterfeed-slider').tweetCarousel({
-//         interval: 7000,
-//         pause: "hover"
-//     });
+
+    /**
+    *   PAGE | Twitter
+    *
+    *   Pull latest tweets from user.
+    */
+    // Create bearer token using the consumer key and secret.
+    var consumerKey = "vo79JbIxgNczwP8DD5Ib8ivzX"; // @todo Place your API key here.
+    var consumerSecret = "pQAG2Ts6vXSInMMzaAJUBpMuphC93i5T3EChsO0lnaHrNAFFEu"; // @todo Place your API secret here.
+    var token = consumerKey + ':' + consumerSecret;
+    var tokenEncoded = btoa(token);
+    var replaceWithDisplayUrl = function(text, url, displayUrl, expandedUrl) {
+        return text.replace(url, '<a href="' + expandedUrl + '">' + displayUrl + '</a>');
+    };
+
+    // Once access token is received, we can use it to retrieve tweets from the account.
+    var getTweets = function(accessToken) {
+
+        $.ajax({
+            type: "get",
+            async: true,
+            crossDomain: true,
+            url: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=TMI_Agency&count=3",
+            headers: {
+                "Authorization": "Bearer " + accessToken
+            },
+            success: function(data, status, jqxhr) {
+                // @todo Make this mess cleaner
+                var tweet0 = data[0].text;
+                var tweet1 = data[1].text;
+                var tweet2 = data[2].text;
+
+                for (var i = 0; i < data[0].entities.urls.length; i++) {
+                    var entityUrl = data[0].entities.urls[i];
+                    tweet0 = replaceWithDisplayUrl(tweet0, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
+                }
+                for (var i = 0; i < data[1].entities.urls.length; i++) {
+                    var entityUrl = data[1].entities.urls[i];
+                    tweet1 = replaceWithDisplayUrl(tweet1, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
+                }
+                for (var i = 0; i < data[2].entities.urls.length; i++) {
+                    var entityUrl = data[2].entities.urls[i];
+                    tweet2 = replaceWithDisplayUrl(tweet2, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
+                }
+
+                var list = $('<ul class="tweet_list">');
+                list.empty();
+
+                list.append('<li>' + tweet0 + '</li>');
+                list.append('<li>' + tweet1 + '</li>');
+                list.append('<li>' + tweet2 + '</li>');
+
+                $('#twitterfeed-slider').append(list);
+
+                $('#twitterfeed-slider').tweetCarousel({
+                    interval: 7000,
+                    pause: "hover"
+                });
+            }
+        });
+    };
+
+    // Send request to get access token.
+    // @todo If the access token is already saved in a cookie, skip this initial step.
+    $.ajax({
+        type: "post",
+        async: true,
+        crossDomain: true,
+        url: "https://api.twitter.com/oauth2/token",
+        headers: {
+            "Authorization": "Basic " + tokenEncoded,
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        data: "grant_type=client_credentials",
+        success: function(data, status, jqxhr) {
+            if (data && data.token_type === "bearer" && data.access_token) {
+                getTweets(data.access_token);
+            }
+        }
+    });
  });
 
 
@@ -208,13 +271,13 @@ $( document ).ajaxComplete(function() {
     $(".loading").delay(1000).slideUp(500, function(){
         $(this).remove();
     });
-    
+
     /* Portfolio details - close. */
     $(".close-portfolio span").click(function(e) {
         $(".portfolio-item-details").delay(500).slideUp(500, function(){
             $(this).remove();
         });
-        
+
         window.location.hash= "!";
         return false;
     });
