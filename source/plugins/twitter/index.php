@@ -1,180 +1,111 @@
 <?php
-/*
 
-Stan Scates
-blr | further
-
-stan@sc8s.com
-blrfurther.com
-
-Basic OAuth and caching layer for Seaofclouds' tweet.js, designed
-to introduce compatibility with Twitter's v1.1 API.
-
-Version: 1.4
-Created: 2013.02.20
-
-https://github.com/seaofclouds/tweet
-https://github.com/themattharris/tmhOAuth
-
+/**
+ * Retrieves the access token needed for making API calls using Twitter's
+ * application-only authentication.
  */
 
-if(empty($_POST)) { die(); }
+class TmiTwitterOauth2 {
 
-class ezTweet {
-    /*************************************** config ***************************************/
+  // URL to retrieve the access token.
+  private $oauth2Url = 'https://api.twitter.com/oauth2/token';
 
-   // Your Twitter App Consumer Key
-    private $consumer_key = 'COFepk7RV9IXI5nzwEyg';
+  // The bearer token used to then require the access token.
+  private $token;
 
-    // Your Twitter App Consumer Secret
-    private $consumer_secret = 'CzvA2yNoOF19O2GP40V8wMtnoDyfxnCL4xTBxEeD1o';
+  public function __construct($consumerKey, $consumerSecret) {
+    $this->token = base64_encode($consumerKey . ':' . $consumerSecret);
+  }
 
-    // Your Twitter App Access Token
-    private $user_token = '1413774739-x3ylpCqNfDPoxtY3yKINkm2Gcbi8g81sbzP36ba';
+  public function fetchAccessToken() {
 
-    // Your Twitter App Access Token Secret
-    private $user_secret = '4A6kxIcUrNOnwLy5pdmQGi6PSdFzihZvZ4CYcrNukMTtk';
+    $headers = array(
+      'Authorization: Basic ' . $this->token,
+      'Content-Type: application/x-www-form-urlencoded;charset=UTF-8',
+    );
 
-    // Path to tmhOAuth libraries
-    private $lib = './lib/';
+    $postFields = array(
+      "grant_type" => "client_credentials",
+    );
+    $postQuery = http_build_query($postFields);
 
-    // Enable caching
-    private $cache_enabled = true;
+    // Get access token
+    $ch = curl_init();
 
-    // Cache interval (minutes)
-    private $cache_interval = 1;
+    curl_setopt($ch, CURLOPT_URL, $this->oauth2Url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_POST, count($postFields));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postQuery);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-    // Path to writable cache directory
-    private $cache_dir = './';
+    $result = curl_exec($ch);
+    curl_close($ch);
 
-    // Enable debugging
-    private $debug = true;
-
-    /**************************************************************************************/
-
-    public function __construct() {
-        // Initialize paths and etc.
-        $this->pathify($this->cache_dir);
-        $this->pathify($this->lib);
-        $this->message = '';
-
-        // Set server-side debug params
-        if($this->debug === true) {
-            error_reporting(-1);
-        } else {
-            error_reporting(0);
-        }
-    }
-
-    public function fetch() {
-        echo json_encode(
-            array(
-                'response' => json_decode($this->getJSON(), true),
-                'message' => ($this->debug) ? $this->message : false
-            )
-        );
-    }
-
-    private function getJSON() {
-        if($this->cache_enabled === true) {
-            $CFID = $this->generateCFID();
-            $cache_file = $this->cache_dir.$CFID;
-
-            if(file_exists($cache_file) && (filemtime($cache_file) > (time() - 60 * intval($this->cache_interval)))) {
-                return file_get_contents($cache_file, FILE_USE_INCLUDE_PATH);
-            } else {
-
-                $JSONraw = $this->getTwitterJSON();
-                $JSON = $JSONraw['response'];
-
-                // Don't write a bad cache file if there was a CURL error
-                if($JSONraw['errno'] != 0) {
-                    $this->consoleDebug($JSONraw['error']);
-                    return $JSON;
-                }
-
-                if($this->debug === true) {
-                    // Check for twitter-side errors
-                    $pj = json_decode($JSON, true);
-                    if(isset($pj['errors'])) {
-                        foreach($pj['errors'] as $error) {
-                            $message = 'Twitter Error: "'.$error['message'].'", Error Code #'.$error['code'];
-                            $this->consoleDebug($message);
-                        }
-                        return false;
-                    }
-                }
-
-                if(is_writable($this->cache_dir) && $JSONraw) {
-                    if(file_put_contents($cache_file, $JSON, LOCK_EX) === false) {
-                        $this->consoleDebug("Error writing cache file");
-                    }
-                } else {
-                    $this->consoleDebug("Cache directory is not writable");
-                }
-                return $JSON;
-            }
-        } else {
-            $JSONraw = $this->getTwitterJSON();
-
-            if($this->debug === true) {
-                // Check for CURL errors
-                if($JSONraw['errno'] != 0) {
-                    $this->consoleDebug($JSONraw['error']);
-                }
-
-                // Check for twitter-side errors
-                $pj = json_decode($JSONraw['response'], true);
-                if(isset($pj['errors'])) {
-                    foreach($pj['errors'] as $error) {
-                        $message = 'Twitter Error: "'.$error['message'].'", Error Code #'.$error['code'];
-                        $this->consoleDebug($message);
-                    }
-                    return false;
-                }
-            }
-            return $JSONraw['response'];
-        }
-    }
-
-    private function getTwitterJSON() {
-        require $this->lib.'tmhOAuth.php';
-        require $this->lib.'tmhUtilities.php';
-
-        $tmhOAuth = new tmhOAuth(array(
-            'host'                  => $_POST['request']['host'],
-            'consumer_key'          => $this->consumer_key,
-            'consumer_secret'       => $this->consumer_secret,
-            'user_token'            => $this->user_token,
-            'user_secret'           => $this->user_secret,
-            'curl_ssl_verifypeer'   => false
-        ));
-
-        $url = $_POST['request']['url'];
-        $params = $_POST['request']['parameters'];
-
-        $tmhOAuth->request('GET', $tmhOAuth->url($url), $params);
-        return $tmhOAuth->response;
-    }
-
-    private function generateCFID() {
-        // The unique cached filename ID
-        return md5(serialize($_POST)).'.json';
-    }
-
-    private function pathify(&$path) {
-        // Ensures our user-specified paths are up to snuff
-        $path = realpath($path).'/';
-    }
-
-    private function consoleDebug($message) {
-        if($this->debug === true) {
-            $this->message .= 'tweet.js: '.$message."\n";
-        }
-    }
+    echo $result;
+  }
 }
 
-$ezTweet = new ezTweet;
-$ezTweet->fetch();
+/**
+ * Retrieves a number of tweets from a screen name.
+ */
 
-?>
+class TmiTweets {
+
+  // API URL for fetching tweets from a user.
+  private $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+
+  // Access token needed to make API calls.
+  private $accessToken;
+
+  // Number of tweets to fetch.
+  private $numTweets;
+
+  // Screen name of the user to fetch tweets from.
+  private $screenName;
+
+  public function __construct($_token, $_screenName, $_numTweets) {
+    $this->accessToken = $_token;
+    $this->screenName = $_screenName;
+    $this->numTweets = $_numTweets;
+  }
+
+  public function fetch() {
+    $url = $this->url . '?screen_name=' . $this->screenName . '&count=' . $this->numTweets;
+
+    $headers = array(
+      'Authorization: Bearer ' . $this->accessToken,
+    );
+
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    echo $result;
+  }
+}
+
+// If there's no access_token provided, go and get it.
+if (empty($_GET['access_token'])) {
+  $consumerKey = getenv('TMITWEETS_CONSUMER_KEY') ? getenv('TMITWEETS_CONSUMER_KEY') : FALSE;
+  $consumerSecret = getenv('TMITWEETS_CONSUMER_SECRET') ? getenv('TMITWEETS_CONSUMER_SECRET') : FALSE;
+
+  if ($consumerKey && $consumerSecret) {
+    $tmiOauth = new TmiTwitterOauth2($consumerKey, $consumerSecret);
+    $tmiOauth->fetchAccessToken();
+  }
+  else {
+    echo "Consumer key and/or consumer secret not set.";
+  }
+}
+// If we've got the access_token, then go get the tweets.
+else {
+  $screenName = 'TMI_Agency';
+  $count = isset($_GET['count']) ? $_GET['count'] : 3;
+  $tmiTweets = new TmiTweets($_GET['access_token'], $screenName, $count);
+  $tmiTweets->fetch();
+}

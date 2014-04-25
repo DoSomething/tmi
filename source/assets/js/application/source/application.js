@@ -170,11 +170,7 @@ $(document).ready(function(){
     *
     *   Pull latest tweets from user.
     */
-    // Create bearer token using the consumer key and secret.
-    var consumerKey = "vo79JbIxgNczwP8DD5Ib8ivzX"; // @todo Place your API key here.
-    var consumerSecret = "pQAG2Ts6vXSInMMzaAJUBpMuphC93i5T3EChsO0lnaHrNAFFEu"; // @todo Place your API secret here.
-    var token = consumerKey + ':' + consumerSecret;
-    var tokenEncoded = btoa(token);
+    // Helper function to replace shortened URL with the display URL.
     var replaceWithDisplayUrl = function(text, url, displayUrl, expandedUrl) {
         return text.replace(url, '<a href="' + expandedUrl + '">' + displayUrl + '</a>');
     };
@@ -182,65 +178,50 @@ $(document).ready(function(){
     // Once access token is received, we can use it to retrieve tweets from the account.
     var getTweets = function(accessToken) {
 
-        $.ajax({
-            type: "get",
-            async: true,
-            crossDomain: true,
-            url: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=TMI_Agency&count=3",
-            headers: {
-                "Authorization": "Bearer " + accessToken
-            },
-            success: function(data, status, jqxhr) {
-                // @todo Make this mess cleaner
-                var tweet0 = data[0].text;
-                var tweet1 = data[1].text;
-                var tweet2 = data[2].text;
+        if (accessToken) {
+            $.ajax({
+                type: 'get',
+                async: true,
+                url: 'plugins/twitter?access_token=' + accessToken,
+                success: function(data, status, jqxhr) {
+                    var jsonData = JSON.parse(data);
 
-                for (var i = 0; i < data[0].entities.urls.length; i++) {
-                    var entityUrl = data[0].entities.urls[i];
-                    tweet0 = replaceWithDisplayUrl(tweet0, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
+                    // List with tweet_list class is expected by JQuery tweetCarousel plugin.
+                    var list = $('<ul class="tweet_list">');
+                    list.empty();
+
+                    for (var i = 0; i < jsonData.length; i++) {
+                        var text = jsonData[i].text;
+
+                        for (var j = 0; j < jsonData[i].entities.urls.length; j++) {
+                            var entityUrl = jsonData[i].entities.urls[j];
+                            text = replaceWithDisplayUrl(text, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
+                        }
+
+                        list.append('<li>' + text + '</li>');
+                    }
+
+                    $('#twitterfeed-slider').append(list);
+
+                    $('#twitterfeed-slider').tweetCarousel({
+                        interval: 7000,
+                        pause: "hover"
+                    });
                 }
-                for (var i = 0; i < data[1].entities.urls.length; i++) {
-                    var entityUrl = data[1].entities.urls[i];
-                    tweet1 = replaceWithDisplayUrl(tweet1, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
-                }
-                for (var i = 0; i < data[2].entities.urls.length; i++) {
-                    var entityUrl = data[2].entities.urls[i];
-                    tweet2 = replaceWithDisplayUrl(tweet2, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
-                }
-
-                var list = $('<ul class="tweet_list">');
-                list.empty();
-
-                list.append('<li>' + tweet0 + '</li>');
-                list.append('<li>' + tweet1 + '</li>');
-                list.append('<li>' + tweet2 + '</li>');
-
-                $('#twitterfeed-slider').append(list);
-
-                $('#twitterfeed-slider').tweetCarousel({
-                    interval: 7000,
-                    pause: "hover"
-                });
-            }
-        });
+            });
+        }
     };
 
     // Send request to get access token.
-    // @todo If the access token is already saved in a cookie, skip this initial step.
+    // @todo If the access token is already saved in a cookie or local storage, skip this initial step.
     $.ajax({
-        type: "post",
+        type: 'get',
         async: true,
-        crossDomain: true,
-        url: "https://api.twitter.com/oauth2/token",
-        headers: {
-            "Authorization": "Basic " + tokenEncoded,
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        data: "grant_type=client_credentials",
+        url: 'plugins/twitter',
         success: function(data, status, jqxhr) {
-            if (data && data.token_type === "bearer" && data.access_token) {
-                getTweets(data.access_token);
+            var jsonData = JSON.parse(data);
+            if (jsonData && jsonData.token_type === "bearer" && jsonData.access_token) {
+                getTweets(jsonData.access_token);
             }
         }
     });
