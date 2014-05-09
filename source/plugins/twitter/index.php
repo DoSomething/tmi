@@ -1,5 +1,7 @@
 <?php
 
+require('tmi-twitter-config.inc');
+
 /**
  * Retrieves the access token needed for making API calls using Twitter's
  * application-only authentication.
