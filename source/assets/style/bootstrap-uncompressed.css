@@ -636,6 +636,8 @@
 */.page-clients .row-fluid {
   padding-bottom: 40px;
   padding-top: 15px;
+  display: table;
+  margin: 0 auto;
 }
 /*
 *   HEADER
@@ -1629,6 +1631,9 @@ a:hover {
 .row-fluid .span2 {
   width: 14.871794871794872%;
   *width: 14.820512820512821%;
+  width: 20%;
+  margin: 0;
+  padding: 0, auto;
 }
 .row-fluid .span1 {
   width: 6.3589743589743595%;
@@ -6765,6 +6770,9 @@ a.badge:focus {
   .row-fluid .span2 {
     width: 14.634146341463415%;
     *width: 14.582864290181364%;
+    width: 20%;
+    margin: 0;
+    padding: 0, auto;
   }
   .row-fluid .span1 {
     width: 6.097560975609756%;
@@ -7123,6 +7131,7 @@ a.badge:focus {
   .row-fluid .span2 {
     width: 14.473684210526315%;
     *width: 14.422402159244264%;
+    
   }
   .row-fluid .span1 {
     width: 5.921052631578947%;
