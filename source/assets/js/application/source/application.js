@@ -5,7 +5,7 @@ $(document).ready(function(){
     var pageHeight = $(window).height();
     var pageWidth = $(window).width();
     var navigationHeight = $("#navigation").outerHeight();
-    
+
     /**
     *   ON RESIZE, check again
     */
@@ -13,30 +13,30 @@ $(document).ready(function(){
         pageWidth = $(window).width();
         pageHeight = $(window).height();
     });
-    
-    
+
+
     /**
     *   ON LOAD
     */
 
     /* Initialize scroll so if user droped to other part of page then home page. */
     $(window).trigger('scroll');
-    
+
     /* Fix navigation. */
     $('#navigation').fixedonlater({
         speedDown: 250,
         speedUp: 100
     });
-    
+
     /* Centralize elements on page. */
     $('.centralized').centralized({
         delay: 1500,
         fadeSpeed: 500
     });
-    
+
     /* Make embeded videos responsive. */
     $.fn.responsivevideos();
-    
+
     /* Carousel "Quote slider" initialization. */
     $('#quote-slider').each(function(){
         if($('.item', this).length) {
@@ -45,7 +45,7 @@ $(document).ready(function(){
             });
         }
     });
-    
+
     /* Scroll spy and scroll filter */
     $('#main-menu').onePageNav({
         currentClass: "active",
@@ -56,8 +56,8 @@ $(document).ready(function(){
         filter: "",
         easing: "swing"
      });
-    
-    /* 
+
+    /*
     *  Paralax initialization.
     *  Exclude for mobile.
     */
@@ -67,21 +67,21 @@ $(document).ready(function(){
         $('#page-features').parallax("0%", 0.07);
         $('#page-twitter').parallax("0%", 0.1);
     }
-    
+
     /* Emulate touch on table/mobile touchstart. */
     if(typeof(window.ontouchstart) != 'undefined') {
         var touchElements = [".social-icons a", ".portfolio-items li", ".about-items .item"];
-        
+
         $.each(touchElements, function (i, val) {
             $(val).each(function(i, obj) {
                 $(obj).bind('click', function(e){
-                
+
                     if($(this).hasClass('clickInNext')){
                         $(this).removeClass('clickInNext');
                     } else {
                         e.preventDefault();
                         e.stopPropagation();
-                        
+
                         $(this).mouseover();
                         $(this).addClass('clickInNext');
                     }
@@ -101,17 +101,17 @@ $(document).ready(function(){
         $('html, body').animate({
             scrollTop: $( $.attr(this, 'href') ).offset().top - navigationHeight + 4
         }, 800);
-        
+
         /* Fix jumping of navigation. */
         setTimeout(function() {
             $(window).trigger('scroll');
         }, 900);
-        
+
         return false;
     });
-    
+
     /**
-    *   PAGE | Welcome 
+    *   PAGE | Welcome
     *
     *   Initialize slider for welcome page H1 message.
     */
@@ -126,7 +126,7 @@ $(document).ready(function(){
         useCSS: false,
         pause: 10000
     });
-    
+
     /**
     *   PAGE | WORK
     *
@@ -164,23 +164,67 @@ $(document).ready(function(){
         onMixStart: null,
         onMixEnd: null
     });
-    
-//     /**
-//     *   PAGE | Twitter 
-//     *
-//     *   Pull latest tweets from user.
-//     *   Configuration: /plugins/twitter/index.php
-//     */
-//     $('#twitterfeed-slider').tweet({
-//         modpath: 'plugins/twitter/',
-//         username: 'TMI_Agency',
-//         count: 3
-//     });
-    
-//     $('#twitterfeed-slider').tweetCarousel({
-//         interval: 7000,
-//         pause: "hover"
-//     });
+
+    /**
+    *   PAGE | Twitter
+    *
+    *   Pull latest tweets from user.
+    */
+    // Helper function to replace shortened URL with the display URL.
+    var replaceWithDisplayUrl = function(text, url, displayUrl, expandedUrl) {
+        return text.replace(url, '<a href="' + expandedUrl + '">' + displayUrl + '</a>');
+    };
+
+    // Once access token is received, we can use it to retrieve tweets from the account.
+    var getTweets = function(accessToken) {
+
+        if (accessToken) {
+            $.ajax({
+                type: 'get',
+                async: true,
+                url: 'plugins/twitter?access_token=' + accessToken,
+                success: function(data, status, jqxhr) {
+                    var jsonData = JSON.parse(data);
+
+                    // List with tweet_list class is expected by JQuery tweetCarousel plugin.
+                    var list = $('<ul class="tweet_list">');
+                    list.empty();
+
+                    for (var i = 0; i < jsonData.length; i++) {
+                        var text = jsonData[i].text;
+
+                        for (var j = 0; j < jsonData[i].entities.urls.length; j++) {
+                            var entityUrl = jsonData[i].entities.urls[j];
+                            text = replaceWithDisplayUrl(text, entityUrl.url, entityUrl.display_url, entityUrl.expanded_url);
+                        }
+
+                        list.append('<li>' + text + '</li>');
+                    }
+
+                    $('#twitterfeed-slider').append(list);
+
+                    $('#twitterfeed-slider').tweetCarousel({
+                        interval: 7000,
+                        pause: "hover"
+                    });
+                }
+            });
+        }
+    };
+
+    // Send request to get access token.
+    // @todo If the access token is already saved in a cookie or local storage, skip this initial step.
+    $.ajax({
+        type: 'get',
+        async: true,
+        url: 'plugins/twitter',
+        success: function(data, status, jqxhr) {
+            var jsonData = JSON.parse(data);
+            if (jsonData && jsonData.token_type === "bearer" && jsonData.access_token) {
+                getTweets(jsonData.access_token);
+            }
+        }
+    });
  });
 
 
@@ -208,13 +252,13 @@ $( document ).ajaxComplete(function() {
     $(".loading").delay(1000).slideUp(500, function(){
         $(this).remove();
     });
-    
+
     /* Portfolio details - close. */
     $(".close-portfolio span").click(function(e) {
         $(".portfolio-item-details").delay(500).slideUp(500, function(){
             $(this).remove();
         });
-        
+
         window.location.hash= "!";
         return false;
     });
