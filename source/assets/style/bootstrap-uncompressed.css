@@ -6522,12 +6522,20 @@ a.badge:focus {
   line-height: 22.5px;
 }
 
+/*
 #page-about .smallFontBy08 {
   min-height: 165px;
 }
+*/
 
+/*
 #page-about a {
   color: #7AACB4;
+}
+*/
+
+#DS {
+  margin-bottom: 75px;
 }
 
 .cutBy10 {
