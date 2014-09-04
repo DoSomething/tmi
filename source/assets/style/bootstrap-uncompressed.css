@@ -920,9 +920,11 @@ footer {
 /*
 *   Icons configuration
 */
+
 .social-icons {
   display: table;
 }
+
 .social-icons a {
   display: table-cell;
 }
