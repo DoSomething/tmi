@@ -668,7 +668,7 @@ height: 185fpx;
 
 #navigation #main-menu {
   display: inline-block;
-  float: none;
+  float: left;
   margin: 0 auto;
   padding: 0px;
   position: relative;
