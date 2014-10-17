@@ -248,7 +248,8 @@
 *   PAGE | FEATURES
 */.page-features {
   position: relative;
-  background: url(../images/pages/features/office_blur.jpg) 50% 0 no-repeat fixed;
+  /*background: url(../images/pages/features/office_blur.jpg) 50% 0 no-repeat fixed;*/
+  background: url(http://i.giphy.com/IodqprBq9KhFK.gif) 50% 0 no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
