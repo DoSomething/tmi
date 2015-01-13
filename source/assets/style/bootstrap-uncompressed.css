@@ -6539,6 +6539,16 @@ a.badge:focus {
 
 #DS {
   margin-bottom: 75px;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+#DS a {
+  color: black;
+}
+
+#DS a:hover {
+  text-decoration: underline; 
 }
 
 .cutBy10 {
