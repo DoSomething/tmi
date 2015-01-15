@@ -248,7 +248,7 @@
 *   PAGE | FEATURES
 */.page-features {
   position: relative;
-  background: url(../images/pages/features/office_blur.jpg) 50% 0 no-repeat fixed;
+  background: url(../images/pages/features/group_park_2.jpg) 50% 0 no-repeat fixed;
   /*background: url(http://i.giphy.com/IodqprBq9KhFK.gif) 50% 0 no-repeat fixed;*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -597,7 +597,7 @@
   bottom: 0;
   right: 0;
   z-index: 1;
-  opacity: 0.1;
+  opacity: 0.4;
   filter: alpha(opacity=10);
   overflow: hidden;
 }
@@ -1204,6 +1204,11 @@ footer {
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
+
+#page-features .overlay:after {
+  opacity: .6;
+}
+
 /*
 *   Center block
 */
