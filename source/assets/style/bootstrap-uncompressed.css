@@ -342,7 +342,7 @@
 */
 .page-twitter {
   position: relative;
-  background: url(../images/pages/twitter/tw_bck.jpg) 50% 0 no-repeat fixed;
+  background: url(../images/pages/twitter/twitter.jpg) 50% 0 no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -585,6 +585,8 @@
 .page-contact {
   position: relative;
   padding-bottom: 50px;
+  background: url(../images/pages/contact/talk_4.jpg);
+  background-size: cover;
 }
 .page-contact .container {
   position: relative;
