@@ -751,7 +751,8 @@ height: 185fpx;
 }
 /*
 *   FOOTER
-*/.pages footer {
+*/
+.pages footer {
   padding-top: 30px;
   padding-bottom: 60px;
   text-align: center;
@@ -6596,6 +6597,13 @@ a.badge:focus {
   
   #page-blog img {
     width: 40%;
+  }
+
+  .container,
+  .navbar-static-top .container,
+  .navbar-fixed-top .container,
+  .navbar-fixed-bottom .container {
+    width: 768px;
   }
 }
 @media (max-width: 767px) {
