@@ -6603,7 +6603,7 @@ a.badge:focus {
   .navbar-static-top .container,
   .navbar-fixed-top .container,
   .navbar-fixed-bottom .container {
-    width: 768px;
+    width: 768terminpx;
   }
 }
 @media (max-width: 767px) {
