@@ -306,6 +306,14 @@
   padding-right: 50px;
 }
 
+#penguin a {
+  color: black;
+  font-style: underline;
+}
+
+#penguin a:hover {
+  color: #444;
+}
 .page-about .about-items .item:hover .about-overlay {
   opacity: 0.95;
   filter: alpha(opacity=95);
