@@ -7411,9 +7411,9 @@ a.badge:focus {
   .brand {
     padding-left: 15px;
   }
-  .overlay {
+  /*.overlay {
     display: none;
-  }
+  }*/
   body .paralax {
     background-attachment: scroll !important;
   }
@@ -7585,9 +7585,9 @@ a.badge:focus {
   #page-twitter .twitterfeed {
     min-height: 75px;
   }
-  .overlay {
+  /*.overlay {
     display: none;
-  }
+  }*/
   .paralax {
     background-attachment: scroll !important;
   }
