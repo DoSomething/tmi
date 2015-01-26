@@ -298,7 +298,14 @@
 
 #penguin {
   width: 100%;
+  margin-left: 0px;
 }
+
+#penguin p {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .page-about .about-items .item:hover .about-overlay {
   opacity: 0.95;
   filter: alpha(opacity=95);
@@ -6640,9 +6647,13 @@ a.badge:focus {
   }
 }
 
-@media (min-width: 979px) and (max-width: 1280px) {
+@media (min-width: 980px) and (max-width: 1279px) {
   .span4 {
     width: 292px;
+  }
+
+  .span8 .offset2 {
+  margin-left: 287px;
   }
 
   ul.thumbnails.about-items {
@@ -6661,9 +6672,14 @@ a.badge:focus {
   margin-left: 60px;
   }
 
+  .row-fluid .offset1:first-child {
+    margin-left: 32%;
+    /*margin-left: 8.536585365853659%;*/
+    *margin-left: 8.434021263289557%;
+  }
 }
 
-@media (min-width: 1281px) {
+@media (min-width: 1280px) {
   .row {
     margin-left: -30px;
     *zoom: 1;
@@ -7293,9 +7309,10 @@ a.badge:focus {
     *margin-left: 11.081646423751685%;
   }
   .row-fluid .offset1:first-child {
-    margin-left: 8.552631578947368%;
-    *margin-left: 8.450067476383266%;
+    margin-left: 32%;
+    *margin-left: 32%;
   }
+
   input,
   textarea,
   .uneditable-input {

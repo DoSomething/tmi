@@ -61,7 +61,7 @@ $(document).ready(function(){
     *  Paralax initialization.
     *  Exclude for mobile.
     */
-    if(pageWidth > 980){
+    if(pageWidth > 10080){
         /* Dont user paralax for tablet and mobile devices. */
         $('#page-welcome').parallax("0%", 0.2);
         $('#page-features').parallax("0%", 0.07);
