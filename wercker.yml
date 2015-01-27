@@ -1,0 +1,25 @@
+box: blisteringherb/scholarship@0.0.6
+build:
+  steps:
+    - script:
+        name: Wercker required dummy step
+        code: ls
+  after-steps:
+      - hipchat-notify:
+          token: $HIPCHAT_TOKEN
+          room-id: $HIPCHAT_ROOM_ID
+          from-name: wercker
+deploy:
+  steps:
+    - bundle-install
+    - script:
+        name: write private key env var
+        code: |-
+          export CAP_PRIVATE_KEY=`mktemp`
+          echo -e $WERCKER_APP_KEY_PRIVATE > $CAP_PRIVATE_KEY
+    - cap
+  after-steps:
+      - hipchat-notify:
+          token: $HIPCHAT_TOKEN
+          room-id: $HIPCHAT_ROOM_ID
+          from-name: wercker
