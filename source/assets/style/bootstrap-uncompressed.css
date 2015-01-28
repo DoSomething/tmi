@@ -6618,12 +6618,22 @@ a.badge:focus {
     width: 40%;
   }
 
+  li.span4.center {
+    width: 231px;
+  }
+
   .container,
   .navbar-static-top .container,
   .navbar-fixed-top .container,
   .navbar-fixed-bottom .container {
     width: 768terminpx;
   }
+
+  #penguin div.about-overlay.img-circle {
+    width: 280px;
+    margin-left: 250px
+  }
+
 }
 @media (max-width: 767px) {
   .hidden-desktop {
