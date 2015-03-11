@@ -5,6 +5,11 @@ set :application, "tmi"
 set :deploy_to, ENV["DEPLOY_PATH"]
 server  ENV["SERVER_NAME"], :app, :web
 
+gateway = ENV["GATEWAY"]
+unless gateway.nil?
+  set :gateway, ENV["GATEWAY"]
+end
+
 set :user, "dosomething"
 set :group, "dosomething"
 set :use_sudo, false
