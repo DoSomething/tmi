@@ -1,10 +1,10 @@
 <?php
 
-require('tmi-twitter-config.inc');
-
 /**
  * Retrieves the access token needed for making API calls using Twitter's
  * application-only authentication.
+ * Requires setting 'TMITWEETS_CONSUMER_SECRET' and 'TMITWEETS_CONSUMER_KEY'
+ * env vars
  */
 
 class TmiTwitterOauth2 {
