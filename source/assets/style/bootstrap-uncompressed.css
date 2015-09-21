@@ -6578,6 +6578,12 @@ a.badge:focus {
   text-decoration: underline; 
 }
 
+/* Advisory Board Section */
+
+.advisory-board .thumbnails.about-items .span4.center .item h5{
+  color: #292929;
+}
+
 .cutBy10 {
   margin: 0px 10%;
 }
@@ -6600,7 +6606,9 @@ a.badge:focus {
 .visible-desktop {
   display: inherit !important;
 }
+
 @media (min-width: 768px) and (max-width: 979px) {
+
   .hidden-desktop {
     display: inherit !important;
   }
@@ -6695,9 +6703,22 @@ a.badge:focus {
     /*margin-left: 8.536585365853659%;*/
     *margin-left: 8.434021263289557%;
   }
+
 }
 
 @media (min-width: 1280px) {
+
+  .advisory-board .thumbnails.about-items .span4.center {
+  width: 17%;
+  min-height: 350px;
+  }
+
+
+  .advisory-board .thumbnails.about-items .span4.center .item {
+  padding-left: 10%;
+  padding-right: 10%;
+  }
+
   .row {
     margin-left: -30px;
     *zoom: 1;
@@ -7687,6 +7708,10 @@ a.badge:focus {
 }
 
 @media (max-width: 480px) {
+  .advisory-board .thumbnails.about-items .span4.center .item {
+    max-width: 75%;
+  }
+
   .page-header h1 small {
     display: block;
     line-height: 27px;
@@ -7930,5 +7955,9 @@ a.badge:focus {
     height: auto !important;
     overflow: visible !important;
   }
+
+
+
+
 }
 
