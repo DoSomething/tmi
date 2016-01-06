@@ -6548,6 +6548,7 @@ a.badge:focus {
   text-align: center;
 }
 .smallFontBy08 {
+  text-align: left;
   font-size: 0.8em;
   line-height: 22.5px;
 }
@@ -6575,7 +6576,7 @@ a.badge:focus {
 }
 
 #DS a:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 
 /* Advisory Board Section */
@@ -6621,7 +6622,7 @@ a.badge:focus {
   .hidden-tablet {
     display: none !important;
   }
-  
+
   #page-blog img {
     width: 40%;
   }
@@ -7249,7 +7250,7 @@ a.badge:focus {
   .row-fluid .span2 {
     width: 14.473684210526315%;
     *width: 14.422402159244264%;
-    
+
   }
   .row-fluid .span1 {
     width: 5.921052631578947%;
@@ -7960,4 +7961,3 @@ a.badge:focus {
 
 
 }
-
