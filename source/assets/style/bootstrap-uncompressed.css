@@ -6676,7 +6676,7 @@ a.badge:focus {
 
 @media (min-width: 980px) and (max-width: 1279px) {
   .span4 {
-    width: 292px;
+    width: 290px;
   }
 
   .span8 .offset2 {
@@ -6692,7 +6692,8 @@ a.badge:focus {
   }
 
   li.span4.center {
-    margin-left: 45px;
+    margin-left: 50px;
+    float: left;
   }
 
   .thumbnails > li {
