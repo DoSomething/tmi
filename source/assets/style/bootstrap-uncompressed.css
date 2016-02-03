@@ -6710,7 +6710,7 @@ a.badge:focus {
 @media (min-width: 1280px) {
 
   .advisory-board .thumbnails.about-items .span4.center {
-  width: 17%;
+  width: 14%;
   min-height: 360px;
   }
 
@@ -7079,6 +7079,14 @@ a.badge:focus {
     margin-left: 0;
   }
 }
+
+@media (min-width: 979px) and (max-width: 1279px) {
+  .advisory-board .thumbnails.about-items .span4.center {
+  width: 14%;
+  min-height: 360px;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
   .row {
     margin-left: -20px;
