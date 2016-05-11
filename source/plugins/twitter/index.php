@@ -106,7 +106,7 @@ if (empty($_GET['access_token'])) {
 }
 // If we've got the access_token, then go get the tweets.
 else {
-  $screenName = 'TMI_Agency';
+  $screenName = 'TMI_Strategy';
   $count = isset($_GET['count']) ? $_GET['count'] : 3;
   $tmiTweets = new TmiTweets($_GET['access_token'], $screenName, $count);
   $tmiTweets->fetch();
