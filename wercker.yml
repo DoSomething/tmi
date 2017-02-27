@@ -1,4 +1,4 @@
-box: blisteringherb/scholarship@0.0.6
+box: dosomething/ds-docker-php
 build:
   steps:
     - script:
